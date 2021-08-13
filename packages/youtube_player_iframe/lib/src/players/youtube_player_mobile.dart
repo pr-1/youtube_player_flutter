@@ -300,8 +300,36 @@ class _MobileYoutubePlayerState extends State<RawYoutubePlayer>
 
   String get player => '''
     <!DOCTYPE html>
+    <head>
+    <style>
+    .frame-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */  
+    padding-top: 25px;
+    width: 300%; /* enlarge beyond browser width */
+    left: -100%; /* center */
+}
+.wrapper {
+   overflow: hidden;
+   max-width: 100%;
+}
+
+.frame-container iframe {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+}
+    </style>
+    </head>
     <body>
+    <div class="wrapper">
+   <div class="frame-container">
          ${youtubeIFrameTag(controller)}
+   </div>
+</div>
+    
         <script>
             $initPlayerIFrame
             var player;
